@@ -1,0 +1,31 @@
+.layout {
+    width: 100%;
+}
+
+.ant-layout-header {
+    background-color: #fff !important;
+    height: 3rem !important;
+    line-height: 3rem !important;
+    padding: 0 !important;
+}
+
+.ant-menu.ant-menu-dark {
+    background: #fff !important;
+}
+
+.site-layout-content {
+    background: #fff;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 5px;
+    min-height: calc(100vh - 7rem);
+}
+
+.footer {
+    padding: 0 !important;
+    text-align: center !important;
+    height: 2rem !important;
+    line-height: 2rem !important;
+    font-size: .6rem !important;
+}
