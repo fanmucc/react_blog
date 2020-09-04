@@ -2,7 +2,7 @@ import axios from '../libs/api.request'
 
 export const getList = () => {
     const data = {
-
+        
     }
     return axios.request({
         url: '',
