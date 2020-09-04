@@ -11,9 +11,9 @@ function HeaderDiv () {
                     <span className="header-text">个人博客</span>
                 </div>
                 <Menu mode="horizontal" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
+                    <Menu.Item key="1">首页</Menu.Item>
+                    <Menu.Item key="2">文集</Menu.Item>
+                    <Menu.Item key="3">杂谈</Menu.Item>
                 </Menu>
             </div>
         </div>
