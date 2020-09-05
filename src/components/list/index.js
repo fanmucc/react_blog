@@ -1,9 +1,11 @@
-import React, { useStatus } from 'react'
+import React from 'react'
 import './list.css'
-function List (props, index) {
+function List (props) {
+
     const handleClickItem = () => {
         console.log(props.id)
     }
+
     return (
         <div className="list" key={props.index}>
             <div className="info-box">

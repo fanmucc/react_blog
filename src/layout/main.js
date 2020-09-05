@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import store from  '../store'
 import HeaderDiv from './header'
 import { debounce } from '../libs/tools'
 import { getTags } from '../api/getList'
@@ -11,9 +12,9 @@ class Blayout extends Component {
         super(porps)
         this.state = {
             top: false,
-            tags: []
+            tags: [],
+            tagsStatus: store.getState().tag
         }
-        this.ref = React.createRef
     }
     componentDidMount() {
         // 挂载滚动监听
@@ -34,7 +35,7 @@ class Blayout extends Component {
         window.removeEventListener('scroll', debounce(this.bindScroll.bind(this), 200));
     }
     render () {
-        const tags = this.state.tags
+        const tags = [{id: null, type_name: '推荐'}, ...this.state.tags]
         return ( 
             <Fragment>
                 <Layout className="layout" ref={this.ref}>
@@ -44,7 +45,10 @@ class Blayout extends Component {
                             <div className="tag-content">
                                 {
                                     tags.map((item, index) => {
-                                        return <li className="tag-list" key={index} >{item.type_name}</li>
+                                        return <li className="tag-list" 
+                                                    style={{color: (this.state.tagsStatus === item.id) ? "#1e90ff" : ""}} 
+                                                    key={index} 
+                                                    onClick={this.handleClickTags.bind(this, item.id)}>{item.type_name}</li>
                                     })
                                 }
                             </div>
@@ -94,6 +98,18 @@ class Blayout extends Component {
         //     // 打开判断执行开关
         //     console.log(2)
         // }
+    }
+    handleClickTags(id) {
+        if (this.state.tagsStatus === id) return
+        console.log(id)
+        const action = {
+            type: "CLICK_TAG",
+            value: id
+        }
+        this.setState({
+            tagsStatus: id
+        })
+        store.dispatch(action)
     }
 }
 

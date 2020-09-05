@@ -6,6 +6,11 @@
     border-bottom: 1px solid rgba(178,186,194,.15);
 }
 
+.list:hover {
+    Cursor : pointer;
+    background-color: rgba(0,0,0,.01);
+}
+
 .info-box {
     flex: 1 1 auto;
     display: flex;
