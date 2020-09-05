@@ -1,9 +1,3 @@
-
-@media screen and (max-width: 900px) {
-    .ant-menu { display: none;}
-    .header { padding: 0 1.5rem !important;}
-}
-
 .header {
     width: 100%;
     font-size: 1rem;

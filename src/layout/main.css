@@ -43,11 +43,11 @@
 }
 
 .site-layout-content {
-    background: #fff;
+    /* background: #fff; */
     width: 60%;
     margin: 1rem auto;
     margin-top: 6.5rem;
-    padding: 1rem;
     border-radius: 5px;
-    min-height: calc(100vh - 8rem);
+    min-height: calc(100vh - 7.5rem);
+    /* min-height: 200vh; */
 }

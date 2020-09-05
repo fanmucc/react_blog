@@ -1,5 +1,11 @@
 @import '~antd/dist/antd.css';
-
+@media screen and (max-width: 900px) {
+    .ant-menu { display: none;}
+    .header { padding: 0 1.5rem;}
+    .header-content {width: 100%;}
+    .tag-content {width: 100%; padding: 0 1.5rem;}
+    .site-layout-content {width: 95%}
+}
 * {
     display: border-box;
 }
@@ -19,4 +25,10 @@ html, body {
     width: 100%;
     min-height: 100%;
     background-color: #f0f2f5;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }

@@ -4,7 +4,7 @@ import Error404 from '../views/error/404'
 import Error405 from '../views/error/405'
 
 // 二级路由组件
-import List from '../views/list'
+import Home from '../views/Home'
 
 
 export const routes = [
@@ -25,6 +25,6 @@ export const routes = [
 export const secroutes = [
     {
         path: '/',
-        component: List
+        component: Home
     }
 ]

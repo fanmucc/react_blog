@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+const baseURL = 'http://127.0.0.1:7001'
 class HttpRequest {
     constructor(baseUrl = baseURL) {
         this.baseUrl = baseUrl
@@ -10,7 +10,7 @@ class HttpRequest {
         const config = {
             baseURL: this.baseUrl,
             headers: {
-
+                "Content-Type": "application/json"
             }
         }
         return config
@@ -56,7 +56,9 @@ class HttpRequest {
 
     request (options) {
         const instance = axios.create()
+        console.log(options)
         options = Object.assign(this.getInsideConfig(), options)
+        console.log(options)
         this.interceptors(instance, options.url)
         return instance(options)
     }

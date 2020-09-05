@@ -1,0 +1,21 @@
+@media screen and (max-width: 900px) {
+    .home-nav { display: none;}
+    .home-list { flex: 1;}
+}
+
+.home-content {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.home-list {
+    width: 60%;
+    background-color: #fff;
+}
+
+.home-nav {
+    margin-left: 1rem;
+    flex: 1;
+    border: 1px solid;
+}

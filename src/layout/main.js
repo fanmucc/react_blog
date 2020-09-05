@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import HeaderDiv from './header'
-
+import { debounce } from '../libs/tools'
+import { getTags } from '../api/getList'
 import './main.css'
 
 import { Layout, Affix } from 'antd';
@@ -9,19 +10,31 @@ class Blayout extends Component {
     constructor(porps) {
         super(porps)
         this.state = {
-            top: false
+            top: false,
+            tags: []
         }
         this.ref = React.createRef
     }
     componentDidMount() {
         // 挂载滚动监听
-        window.addEventListener('scroll', this.bindScroll.bind(this))
+        window.addEventListener('scroll', debounce(this.bindScroll.bind(this), 200))
+        // 获取tags列表
+        getTags().then(res => {
+            const {data} = res
+            console.log(data)
+            this.setState({
+                tags: data.data
+            })
+        }).catch(error => {
+            return error
+        })
     }
     componentWillUnmount() {
         // 移除滚动监听
-        window.removeEventListener('scroll', this.bindScroll.bind(this));
+        window.removeEventListener('scroll', debounce(this.bindScroll.bind(this), 200));
     }
     render () {
+        const tags = this.state.tags
         return ( 
             <Fragment>
                 <Layout className="layout" ref={this.ref}>
@@ -29,8 +42,11 @@ class Blayout extends Component {
                         <HeaderDiv></HeaderDiv>
                         <div className="tag">
                             <div className="tag-content">
-                                <li className="tag-list">Vue</li>
-                                <li className="tag-list">React</li>
+                                {
+                                    tags.map((item, index) => {
+                                        return <li className="tag-list" key={index} >{item.type_name}</li>
+                                    })
+                                }
                             </div>
                         </div>
                     </Header>
