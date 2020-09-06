@@ -25,3 +25,9 @@ export const throttle = (fn, wart) => {
         }
     }
 }
+
+// 判断数组长度是小于特定长度，如果小于则返回true
+export const arrayLength = (array, length) => {
+    console.log(array, length)
+    return array.length === length ? true : false
+}

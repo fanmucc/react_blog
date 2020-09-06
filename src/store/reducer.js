@@ -1,5 +1,5 @@
 const defaultState = {
-    tag: null
+    tag: null,
 }
 
 export default (state = defaultState, action) => {

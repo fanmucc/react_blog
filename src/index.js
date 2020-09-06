@@ -3,7 +3,6 @@ import ReactDom from 'react-dom'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import { routes } from './router'
 
-
 ReactDom.render(
     <Router>
         <Switch>

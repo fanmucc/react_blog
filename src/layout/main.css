@@ -25,6 +25,7 @@
 }
 
 .tag-content {
+    overflow: auto;
     width: 60%;
     margin: 0 auto;
     display: flex;
@@ -37,6 +38,10 @@
 .tag-list {
     list-style: none;
     margin-left: 1.5rem;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
 }
 
 .tag-list:hover {
@@ -48,6 +53,10 @@
     margin-left: 0;
 }
 
+.tag-list:nth-last-child(1) {
+    padding-right: 1rem;
+
+}
 .site-layout-content {
     /* background: #fff; */
     width: 60%;

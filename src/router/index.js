@@ -5,7 +5,7 @@ import Error405 from '../views/error/405'
 
 // 二级路由组件
 import Home from '../views/Home'
-
+import VuePage from '../views/Vue'
 
 export const routes = [
     {
@@ -26,5 +26,9 @@ export const secroutes = [
     {
         path: '/',
         component: Home
+    },
+    {
+        path: '/vue',
+        component: VuePage
     }
 ]

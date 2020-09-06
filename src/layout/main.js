@@ -13,7 +13,8 @@ class Blayout extends Component {
         this.state = {
             top: false,
             tags: [],
-            tagsStatus: store.getState().tag
+            tagsStatus: store.getState().tag,
+            scroll: store.getState().scroll
         }
     }
     componentDidMount() {
@@ -64,44 +65,48 @@ class Blayout extends Component {
         )
     }
     bindScroll(event) {
-        let scrollTop = event.srcElement.documentElement.scrollTop;
-
+        let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false) || window.pageYOffset || (event.srcElement ? event.srcElement.body.scrollTop : 0);     // 滚动高度
+        // let scrollHeight = (event.srcElement && event.srcElement.documentElement.scrollHeight) || document.body.scrollHeight;   // 文档高度
+        // let clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;   // 窗口高度
         if (scrollTop > 200) {
-            console.log(1)
             this.setState({
                 top: true
             })
         } else {
-            console.log(2)
             this.setState({
                 top: false
             })
         }
-        // 滚动的高度
-        // const scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false) || window.pageYOffset || (event.srcElement ? event.srcElement.body.scrollTop : 0);
-        // // 视窗高度
-        // const clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;
-        // // 页面高度
-        // const scrollHeight = (event.srcElement && event.srcElement.documentElement.scrollHeight) || document.body.scrollHeight;
-        // // 距离页面底部的高度
-        // const height = scrollHeight - scrollTop - clientHeight;
-        // // 判断距离页面底部的高度
-        // if (height <= (this.props.num || 0)) {
-        //     // 判断执行回调条件
-        //     if (this.state.codeType) {
-        //         // 执行回调
-        //         this.props.scrollCallback();
-        //         // 关闭判断执行开关
-        //        console.log(1)
-        //     }
-        // } else {
-        //     // 打开判断执行开关
-        //     console.log(2)
-        // }
     }
     handleClickTags(id) {
         if (this.state.tagsStatus === id) return
-        console.log(id)
+        let routerName = ''
+        switch (id) {
+            case 1:
+                routerName = 'vue';
+                break;
+            case 2:
+                routerName = 'react';
+                break
+            case 3:
+                routerName = 'mysql';
+                break
+            case 4:
+                routerName = 'qianduan';
+                break
+            case 5:
+                routerName = 'http';
+                break
+            case 6:
+                routerName = 'git';
+                break
+            case 7:
+                routerName = 'css';
+                break
+            default:
+                routerName = '/'                                     
+        }
+
         const action = {
             type: "CLICK_TAG",
             value: id
@@ -110,6 +115,8 @@ class Blayout extends Component {
             tagsStatus: id
         })
         store.dispatch(action)
+        console.log(routerName)
+        this.props.history.push(routerName)
     }
 }
 
