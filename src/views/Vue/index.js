@@ -37,20 +37,20 @@ function VuePage () {
         limit: 20
     })
     const [pullData, setPullData] = useState(true)
-    const [listDataLength, setliStDataLength] = useState(true)
+    const listDataLength = useRef(true)
 
-    async function getListData( data = {}) {
+    function getListData( data = {}) {
         console.log(data, listDataLength,  '===data====')
-        const result = await getList(data)
-        console.log(result)
-
-        console.log(result.data.data)
-        setliStDataLength(arrayLength(result.data.data, get.current.limit))
-        setPullData(false)
-        let b = JSON.parse(JSON.stringify(list))
-        setList(preState => {
-            return [...preState, ...result.data.data]
+        getList(data).then(res => {
+            listDataLength.current = arrayLength(res.data.data, get.current.limit)
+            console.log(arrayLength(res.data.data, get.current.limit), 'ssssssss')
+            console.log(listDataLength, 'mmmmmmmm')
+            setPullData(false)
+            setList(preState => {
+                return [...preState, ...res.data.data]
+            })
         })
+       
     }
 
     const scroll = (event) => {
@@ -59,7 +59,7 @@ function VuePage () {
         let clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;   // 窗口高度
         let scrollBottom = scrollHeight - (scrollTop + clientHeight)
         if (scrollBottom <= 300) {
-            if (!listDataLength) return   // 当返回的数组长度小于limit时则不再进行请求， 此时想要再次获取请进行页面刷新
+            if (!listDataLength.current) return   // 当返回的数组长度小于limit时则不再进行请求， 此时想要再次获取请进行页面刷新
             if (pullData) {
                 // 修改get里面值，触发页面渲染
                 setPullData(false)
