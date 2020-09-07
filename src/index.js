@@ -8,11 +8,11 @@ ReactDom.render(
         <Switch>
             {
                 routes.map(item => {
-                    return <Route key={item.path} path={item.path} component={item.component}></Route>
+                    return <Route key={item.path} path={item.path} component={item.component} exact></Route>
                 })
             }
             {/* 重定向 */}
-            <Redirect from="/" to="/" exact></Redirect>
+            <Redirect from="/" to="/"></Redirect>
             {/* 错误指向 */}
             <Redirect to="/404" />
         </Switch>

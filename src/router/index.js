@@ -1,5 +1,6 @@
 import App from '../App'
 // 全页面显示组件
+import Detail from '../views/Detail'
 import Error404 from '../views/error/404'
 import Error405 from '../views/error/405'
 
@@ -11,6 +12,10 @@ export const routes = [
     {
         path: '/',
         component: App
+    },
+    {
+        path: '/post/:id',
+        component: Detail
     },
     {
         path: '/404',

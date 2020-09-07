@@ -14,3 +14,14 @@ export const getTags = () => {
         method: 'get'
     })
 }
+
+// 获取文章详情信息
+export const getArticleEgg = (id) => {
+    return axios.request({
+        url: '/default/article',
+        method: 'post',
+        data: {
+            id
+        }
+    })
+}

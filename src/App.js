@@ -9,14 +9,12 @@ class App extends Component {
         return (
             <div className="App">
                 <Blayout history={this.props.history}>
-                    <Switch>
-                        {
-                            secroutes.map(item => {
-                                return <Route key={item.path} path={item.path} component={item.component} exact/>
-                            })
-                        }
-                        <Redirect from="/" to="/" exact/>
-                    </Switch>
+                    {
+                        secroutes.map(item => {
+                            return <Route key={item.path} path={item.path} component={item.component} exact/>
+                        })
+                    }
+                    <Redirect from="/" to="/" exact/>
                 </Blayout>
             </div>
         )

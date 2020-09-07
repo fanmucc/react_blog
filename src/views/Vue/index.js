@@ -6,51 +6,23 @@ import { debounce } from '../../libs/tools'
 import List from '../../components/list'
 
 function VuePage () {
-    // const [state, setState] = useState({
-    //     list: [],
-    //     type: 1,
-    //     resStatus: false,
-    //     pullData: true,        // 加载数据状态，完成后才能继续滚动增加page
-    //     listDataLength: true, // 获取文章列表数组长度是否等于limit 大于返回true小于返回false，同时为false时滚动到底则不进行数据加载
-    //     page: 1,
-    //     limit: 20
-    // })
-    // useEffect(() => {
-    //     getListData({
-    //         type: state.type,
-    //         page: state.page,
-    //         limit: state.limit
-    //     })
-    // },[state])
-    // const getListData = (data) => {
-    //     getList(data).then(res => {
-    //         let newState = JSON.parse(JSON.stringify(state))
-    //         newState.list = [...state.list, ...res.data.data]
-    //         newState.listDataLength = arrayLength(res.data.data, state.limit)
-    //         setState(newState)
-    //     })
-    // }
     const [list, setList] = useState([])  // 列表数据
     const get = useRef({
         type: 1,
         page: 1,
         limit: 20
     })
-    const [pullData, setPullData] = useState(true)
-    const listDataLength = useRef(true)
+    const pullData = useRef(true)      // 判断是否获取到请求数据,触发时为false, 获取到数据后修改为true
+    const listDataLength = useRef(true)     // 判断返回的数据是否为相应长度 符合为true 不符合为false
 
-    function getListData( data = {}) {
-        console.log(data, listDataLength,  '===data====')
+    const  getListData = ( data = {}) => {
         getList(data).then(res => {
             listDataLength.current = arrayLength(res.data.data, get.current.limit)
-            console.log(arrayLength(res.data.data, get.current.limit), 'ssssssss')
-            console.log(listDataLength, 'mmmmmmmm')
-            setPullData(false)
+            pullData.current = true
             setList(preState => {
                 return [...preState, ...res.data.data]
             })
         })
-       
     }
 
     const scroll = (event) => {
@@ -60,9 +32,9 @@ function VuePage () {
         let scrollBottom = scrollHeight - (scrollTop + clientHeight)
         if (scrollBottom <= 300) {
             if (!listDataLength.current) return   // 当返回的数组长度小于limit时则不再进行请求， 此时想要再次获取请进行页面刷新
-            if (pullData) {
+            if (pullData.current) {
                 // 修改get里面值，触发页面渲染
-                setPullData(false)
+                pullData.current = false
                 get.current.page = get.current.page + 1
                 // 再次调用数据请求函数
                 getListData({...get.current})
@@ -71,8 +43,8 @@ function VuePage () {
     }
 
     useEffect(() => {
-        getListData({...get.current})
-        window.addEventListener('scroll', debounce(scroll, 200))
+        getListData({...get.current})   // componentDidMount 页面加载完成时运行
+        window.addEventListener('scroll', debounce(scroll, 200))    // 修改page触发useEffect监听进行页面刷新
         return () => {
             window.removeEventListener('scroll', debounce(scroll, 200))
         }
@@ -112,7 +84,7 @@ function VuePage () {
                     </Card>
                 </section> */}
                 </div>
-            {/* <p className="home-content-prompt"><span>{state.listDataLength === true? '正在加载中...' : '别划啦, 数据已经全部加载完成了!'}</span></p> */}
+            <p className="home-content-prompt"><span>{listDataLength.current === true? '正在加载中...' : '别划啦, 数据已经全部加载完成了!'}</span></p>
             </div>
         </div>
     )

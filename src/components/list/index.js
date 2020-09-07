@@ -1,11 +1,7 @@
 import React from 'react'
+import { History } from 'react-router-dom'
 import './list.css'
 function List (props) {
-
-    const handleClickItem = () => {
-        console.log(props.id)
-    }
-
     return (
         <div className="list" key={props.index}>
             <div className="info-box">
@@ -23,7 +19,7 @@ function List (props) {
                     </ul>
                 </div>
                 <div className="info-row title-row">
-                    <span className="title" onClick={handleClickItem}>{props.title}</span>    
+                    <span className="title"><a href={`/post/${props.id}`}>{props.title}</a> </span>    
                 </div>
                 <div className="info-row action-row">
                     <ul className="action-list">
