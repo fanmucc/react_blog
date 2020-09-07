@@ -5,6 +5,7 @@
     .header-content {width: 100%;}
     .tag-content {width: 100%; padding: 0 1.5rem;}
     .site-layout-content {width: 95%}
+    .detail-content-text {width: 100%}
 }
 * {
     display: border-box;

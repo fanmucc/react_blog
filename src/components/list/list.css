@@ -48,17 +48,17 @@
     text-overflow: ellipsis;
 }
 
-.title {
+.titlelist {
     font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.2;
     color: #2e3135;
 }
 
-.title a {
+.titlelist a {
     color: #2e3135;
 }
 
-.title:hover {
+.titlelist:hover {
     text-decoration: underline;
 }

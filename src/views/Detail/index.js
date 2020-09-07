@@ -2,16 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from './components/header'
 import ReactMarkdown from 'react-markdown'
 import { getArticleEgg } from '../../api/getList'
+
+import CodeBlock from './codeblock'
 import './detail.css'
 
 function Detail (props) {
     console.log(props)
     const [markdown, setMarkdown] = useState('')
+    const [title, setTitle] = useState('')
+    const [viewCount, setViewCount] = useState(0)
     const { params } = props.match
     const getArticle = (id = params.id) => {
         getArticleEgg(id).then(res => {
             console.log(res)
             setMarkdown(res.data.data[0].markdown)
+            setTitle(res.data.data[0].title)
+            setViewCount(res.data.data[0].view_count)
         })
     } 
     useEffect(() => {
@@ -33,11 +39,11 @@ function Detail (props) {
             <div className="detail-content">
                 <div className="detail-content-text">
                     <div className="content">
-                        <h3>测试</h3>
+                        <h1 className="title">{title}</h1>
                         <p className="article">
-                            <span className="article-user">作者: fanmu</span>
-                            <span className="article-time">发布时间: 2020.9.7</span>
-                            <span className="article-count">233</span>
+                            <span className="info article-user">fanmu</span>
+                            <span className="info article-time">2020.9.7</span>
+                            <span className="info article-count">{viewCount}</span>
                         </p>
                         <div className="article-details markdown-body">
                             <ReactMarkdown

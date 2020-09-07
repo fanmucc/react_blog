@@ -19,7 +19,7 @@ function List (props) {
                     </ul>
                 </div>
                 <div className="info-row title-row">
-                    <span className="title"><a href={`/post/${props.id}`}>{props.title}</a> </span>    
+                    <span className="titlelist"><a href={`/post/${props.id}`}>{props.title}</a> </span>    
                 </div>
                 <div className="info-row action-row">
                     <ul className="action-list">
